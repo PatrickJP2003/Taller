@@ -36,13 +36,47 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div class="app-header">
+      <div 
+        class="app-header" 
+        nz-flex 
+        nzJustify="space-between"
+        nzAlign="center"
+        >
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <span class="trigger"
                nz-icon
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></span>
         </span>
+        <nz-avatar 
+          nzIcon="user" 
+          routerLink="/login"
+          *ngIf="!isLogged();else loggedIn"
+          style="cursor: pointer; background-color:#87d068; margin-right: 16px;"
+          nzTooltipTitle="Iniciar Sesión" 
+          nzTooltipPlacement="bottom"
+          nz-tooltip
+          ></nz-avatar>
+        <ng-template #loggedIn>
+          <button nzType="text" nz-button nz-dropdown [nzDropdownMenu]="menu">
+            <nz-avatar 
+              nzIcon="user" 
+              [nzSrc]="registersService.currentRegister?.photoURL"
+            >
+            </nz-avatar>
+            <span style="margin-left: 8px;" nz-icon nzType="down"></span>
+          </button>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a>Editar perfil</a>
+              </li>
+              <li nz-menu-item>
+                <a (click)="onClickLogout()">Cerrar sesión</a>
+              </li>
+            </ul>
+          </nz-dropdown-menu>   
+        </ng-template>  
       </div>
     </nz-header>
     <nz-breadcrumb style="margin-top: 16px; margin-left: 16px;">
