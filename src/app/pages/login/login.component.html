@@ -1,33 +1,46 @@
-<form nz-form  class="login-form" [formGroup]="form" (ngSubmit)="onClickLogin()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Por favor ingrese su correo">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="email" nz-input formControlName="email" placeholder="a@dominio.com" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Por favor ingrese su contraseña">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Contraseña" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <label nz-checkbox formControlName="remember">
-          <span>Recordar inicio de sesión?</span>
-        </label>
-      </div>
-      <div nz-col [nzSpan]="12">
-        <a class="login-form-forgot">Olvide mi contraseña</a>
-      </div>
+<form nz-form [formGroup]="form" class="login-form">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="email" nz-input formControlName="email" placeholder="a@dominio.com" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Contraseña" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <label nz-checkbox>
+        <span>Recordar Inicio de Sesión</span>
+      </label>
     </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar Sesion</button>
-    <button (click)="onClickLoginGoogle()" nz-button class="login-form-button login-form-margin" type="button">
-        <span nz-icon nzType="google" nzTheme="outline"></span>
-        Iniciar Sesion con Google
-    </button>
-    O
-    <a routerLink="/register">registrarme ahora</a>
-  </form>
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-forgot">Olvide mi contraseña</a>
+    </div>
+  </div>
+  <button 
+      nz-button 
+      class="login-form-button login-form-margin" 
+      [nzType]="'primary'" 
+      type="button"
+      (click)="onClickLogin()"
+      >
+      Iniciar Sesión
+  </button>
+  <button 
+      nz-button 
+      class="login-form-button login-form-margin" 
+      type="button"
+      (click)="onClickLoginGoogle()"
+      >
+      <span nz-icon nzType="google" nzTheme="outline"></span>
+      Iniciar Sesión con Google
+  </button>    
+  O
+  <a routerLink="/register">registrarme ahora</a>
+</form>

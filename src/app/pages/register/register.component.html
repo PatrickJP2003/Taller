@@ -1,67 +1,62 @@
 <form nz-form [formGroup]="form">
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Correo</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingrese su correo">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingrese un correo válido">
             <input nz-input formControlName="email" id="email" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Contraseña</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingrese su contraseña">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingrese su contraseña">
             <input (ngModelChange)="updateConfirmValidator()" nz-input type="password" id="password" formControlName="password" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="confirmPassword" nzRequired>Confirme la contraseña</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmar Contraseña</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-            <input nz-input type="password" formControlName="confirmPassword" id="confirmPassword" />
+            <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
             <ng-template #errorTpl let-control>
                 @if (control.errors?.['required']) {
-                Por favor ingrese su contraseña de confirmación
+                Confirma tu contraseña
                 }
                 @if (control.errors?.['confirm']) {
-                Las contraseñas no coinciden
+                Las dos contraseñas son diferentes!
                 }
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired
-            nzTooltipTitle="Cómo te gustaría que te llamen?">
-            <span>Nickname</span>
+            nzTooltipTitle="Escribe tu nombre de usuario">
+            <span>Nombre de Usuario</span>
         </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor ingrese su nickname">
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa tu nombre de usuario!">
             <input nz-input id="nickname" formControlName="nickname" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Celular</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" 
-            nzErrorTip="Por favor ingrese su número">
-            <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+            nzErrorTip="Ingrese su número de telefono!">
+            <input formControlName="phoneNumber" id="phoneNumber" nz-input />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <label nz-checkbox formControlName="agree">
-                <span>
-                    He leído los
-                    <a>terminos y condiciones</a>
-                </span>
-            </label>
+            <button nz-button nzType="primary" type="button" (click)="onClickRegister()">Registrarme</button>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <button (click)="onClickRegister()" nz-button nzType="primary" type="button">Registrarme</button>
-        </nz-form-control>     
-    </nz-form-item>
-    <nz-form-item nz-row class="register-area">
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <button (click)="onClickRegisterGoogle()" nz-button class="login-form-button login-form-margin" type="button">
+            <button 
+                nz-button 
+                class="login-form-button login-form-margin" 
+                type="button"
+                (click)="onClickRegisterWithGoogle()"
+            >
                 <span nz-icon nzType="google" nzTheme="outline"></span>
                 Registrarme con Google
-            </button>
-        </nz-form-control>   
-    </nz-form-item>
+            </button> 
+        </nz-form-control> 
+    </nz-form-item> 
 </form>

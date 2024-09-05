@@ -4,9 +4,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { UsersService } from '../../services/users/users.service';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RouterLink } from '@angular/router';
+import { RegistersService } from '../../services/registers/registers.service';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-login',
@@ -14,29 +14,28 @@ import { RouterLink } from '@angular/router';
   imports: [
     NzFormModule, 
     NzInputModule, 
-    NzButtonModule,
-    NzCheckboxModule,
-    ReactiveFormsModule,
-    NzIconModule,
-    RouterLink
+    NzButtonModule, 
+    ReactiveFormsModule, 
+    NzCheckboxModule, 
+    RouterLink, 
+    NzIconModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService) {
-    this.form = this.fb.group({
-      email: ["", [Validators.required]],
-      password: ["", [Validators.required]],
-      remember: [true]
-    });
+  constructor(private formBuilder: FormBuilder, private registersService: RegistersService) {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    })
   }
 
   onClickLogin(): void {
-    this.usersService.login(this.form.value)
+    if(this.form.invalid) return;
+    this.registersService.login(this.form.value)
       .then((response) => {
         console.log(response);
       })
@@ -44,12 +43,11 @@ export class LoginComponent {
   }
 
   onClickLoginGoogle(): void {
-    this.usersService.loginWithGoogle()
+    this.registersService.loginWithGoogle()
       .then((response) => {
         console.log(response);
       })
       .catch(error => console.log(error));
   }
-
 
 }
