@@ -46,5 +46,8 @@ export class UsersService {
     let user : User = { uid } as User;
     return deleteUser(user);
   } 
+  getCurrenUser(): User | null {
+    return this.auth.currentUser;
+  }
     
 }

@@ -1,0 +1,38 @@
+<!-- HTML -->
+<div *ngIf="productForm" class="form-container">
+    <form [formGroup]="productForm" (ngSubmit)="submitProduct()" class="product-form">
+      <h2>Agregar Nuevo Producto</h2>
+  
+      <div class="form-group">
+        <label for="nombre">Nombre del Juego:</label>
+        <input id="nombre" formControlName="nombre" type="text" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input id="precio" formControlName="precio" type="number" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="id">ID:</label>
+        <input id="id" formControlName="id" type="text" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="imagen">Imagen:</label>
+        <input id="imagen" type="file" (change)="onFileSelected($event)" class="file-input" />
+      </div>
+  
+      <button type="submit" class="submit-button">Agregar Producto</button>
+    </form>
+  
+    <div *ngIf="imageUrl" class="image-preview">
+      <img [src]="imageUrl" alt="Imagen del producto" width="200" />
+    </div>
+  </div>
+  

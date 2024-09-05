@@ -1,0 +1,12 @@
+<div class="usuarios-container">
+  <h2>Usuarios Registrados</h2>
+  <ul class="user-list">
+    <li *ngFor="let user of users" class="user-item">
+      <p><strong>Nickname:</strong> {{ user.nickname || 'No disponible' }}</p>
+      <p><strong>Email:</strong> {{ user.email || 'No disponible' }}</p>
+      <p><strong>Phone Number:</strong> {{ user.phoneNumber || 'No disponible' }}</p>
+      <p><strong>Role:</strong> {{ user.role || 'No disponible' }}</p>
+      <p><strong>Photo URL:</strong> <img *ngIf="user.photoURL" [src]="user.photoURL" alt="User Photo" /></p>
+    </li>
+  </ul>
+</div>

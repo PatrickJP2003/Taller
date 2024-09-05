@@ -40,14 +40,20 @@ export class RegisterComponent {
 
 
   onClickRegister(): void {
-    if(this.form.invalid) return;
+    if (this.form.invalid) return;
+  
     const email = this.form.value.email;
     const password = this.form.value.password;
+    
     this.registersService.createRegister({email, password}, this.form.value)
       .then((response) => {
         console.log(response);
+        // Manejar éxito, como redirigir al usuario o mostrar un mensaje
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.error('Error en el registro:', error.message);
+        // Mostrar mensaje al usuario sobre el error
+      });
   }
 
   onClickRegisterWithGoogle(): void {
